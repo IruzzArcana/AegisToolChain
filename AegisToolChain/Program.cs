@@ -30,11 +30,6 @@ class AegisScript
                 """);
             return;
         }
-        if (!File.Exists(args[0]))
-        {
-            Console.WriteLine($"{args[0]} does not exist");
-            return;
-        }
 
         int mode;
 
@@ -51,7 +46,15 @@ class AegisScript
 
         bool prettyPrint = args.Length > 3 && (args[3] == "-p" || args[3] == "--pretty-print");
 
-        script.FileStream = File.ReadAllBytes(args[0]);
+        try
+        {
+            script.FileStream = File.ReadAllBytes(args[0]);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to open {args[0]}: {ex.Message}");
+            return;
+        }
 
         if (mode == 0)
             AegisDisassembler.Disassemble(script.FileStream, args[2], prettyPrint);

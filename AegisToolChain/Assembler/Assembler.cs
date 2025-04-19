@@ -88,7 +88,14 @@ namespace AegisToolChain.Assembler
                         outstream.WriteByte((sbyte)Opcode.Get(info));
                     }
                 }
-                File.WriteAllBytes(path, outstream.Bytes());
+                try
+                {
+                    File.WriteAllBytes(path, outstream.Bytes());
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine($"Failed to write {path}: {ex.Message}");
+                }
             }
         }
     }
