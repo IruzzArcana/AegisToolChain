@@ -14,7 +14,7 @@ namespace AegisToolChain.Assembler
     {
         public static void Assemble(byte[] data, string path)
         {
-            var stream = new StreamReader(new MemoryStream(data));
+            using (var stream = new StreamReader(new MemoryStream(data)))
             using (var outstream = new DataOutputStream())
             {
                 while (!stream.EndOfStream)

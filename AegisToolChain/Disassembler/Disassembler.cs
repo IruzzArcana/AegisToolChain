@@ -12,10 +12,9 @@ namespace AegisToolChain.Disassembler
     {
         public static void Disassemble(byte[] data, string path, bool prettyPrint = false)
         {
-            var stream = new DataInputStream(data);
-
             try
             {
+                using (var stream = new DataInputStream(data))
                 using (var writer = new StreamWriter(path, false))
                 {
                     if (prettyPrint)
