@@ -35,7 +35,7 @@ namespace AegisToolChain.Assembler
             {
                 while (!stream.EndOfStream)
                 {
-                    string text = stream.ReadLine()!;
+                    string text = stream.ReadLine()!.Trim();
 
                     string[] tokens = Regex.Matches(text, @"(?<match>[^\s""]+)|(?<match>\""[^\""]*\"")")
                                            .Cast<Match>()
@@ -102,7 +102,7 @@ namespace AegisToolChain.Assembler
             {
                 while (!stream.EndOfStream)
                 {
-                    string text = stream.ReadLine()!;
+                    string text = stream.ReadLine()!.Trim();
                     lineCount++;
                     /*
                      * ([^\s""]+) matches non-whitespace and non-quote characters. 
