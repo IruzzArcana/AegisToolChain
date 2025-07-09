@@ -10,16 +10,20 @@ namespace AegisToolChain.Opcodes
     {
         public enum OperandType
         {
-            Int,
-            Short,
+            None,
             Byte,
+            Short,
+            Int = 4,
             String
         }
         public string Format { get; }
         public OperandType[] OperandTypes { get; }
+        
+        public bool IsJump { get; }
 
-        public OpcodeInfo(string format, params OperandType[] operandTypes)
+        public OpcodeInfo(bool is_jump, string format, params OperandType[] operandTypes)
         {
+            IsJump = is_jump;
             Format = format;
             OperandTypes = operandTypes;
         }

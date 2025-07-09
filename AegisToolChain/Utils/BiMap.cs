@@ -11,6 +11,9 @@ namespace AegisToolChain.Utils
         private readonly Dictionary<TKey, TValue> _forward = new Dictionary<TKey, TValue>();
         private readonly Dictionary<TValue, TKey> _reverse = new Dictionary<TValue, TKey>();
 
+        public IReadOnlyDictionary<TKey, TValue> ForwardMap => _forward;
+        public IReadOnlyDictionary<TValue, TKey> ReverseMap => _reverse;
+
         public int Count => _forward.Count;
 
         public TValue this[TKey key]
@@ -37,9 +40,10 @@ namespace AegisToolChain.Utils
         public void Add(TKey key, TValue value)
         {
             if (_forward.ContainsKey(key))
-                throw new ArgumentException("Duplicate key", nameof(key));
+                return;
+
             if (_reverse.ContainsKey(value))
-                throw new ArgumentException("Duplicate value", nameof(value));
+                return;
 
             _forward[key] = value;
             _reverse[value] = key;

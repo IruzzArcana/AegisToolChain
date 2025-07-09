@@ -22,6 +22,8 @@ namespace AegisToolChain.Utils.IO
             _reader = new BinaryReader(_stream);
         }
 
+        public void Seek(long offset, SeekOrigin loc) => _stream.Seek(offset, loc);
+
         public int ReadInt()
         {
             var bytes = _reader.ReadBytes(4);
