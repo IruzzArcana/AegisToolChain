@@ -52,9 +52,7 @@ namespace AegisToolChain.Assembler
                         if (inst == $"{lab}:")
                         {
                             Labels.Add(addr, lab);
-                            {
-                                return addr;
-                            }
+                            return addr;
                         }
                         continue;
                     }

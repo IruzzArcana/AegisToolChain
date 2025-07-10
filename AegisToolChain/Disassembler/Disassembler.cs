@@ -73,9 +73,7 @@ namespace AegisToolChain.Disassembler
                     }
 
                     if (stream.Position() != kvp.Key)
-                    {
                         throw new InvalidOperationException($"Failed to find jump target 0x{kvp.Key:X}");
-                    }
 
                     lines.Insert(line_count, $"{kvp.Value}:");
 
